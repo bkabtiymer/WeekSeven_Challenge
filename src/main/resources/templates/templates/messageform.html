@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+    .cursive {
+        text-align: center;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+    }
+    textarea {
+        width: 100%;
+        height: 50px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #fff7e0;
+        font-size: 16px;
+        resize: none;
+    }
+</style>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <button type="button" class="btn btn-info">PostMe!</button></a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/"></a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/add">Post</a></li>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<h2><div class="w3-container cursive">
+    <p class="w3-jumbo">Add a Post:</p>
+</div>
+</h2>
+<form action="#"
+      th:action="@{/process}"
+      th:object="${message}"
+      method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <h4> Message Title :<textarea rows="2" th:field="*{title}"/>
+        <span th:if="${#fields.hasErrors('title')}"
+              th:errors="*{title}"></span><br/>
+        Content :<textarea rows="6" th:field="*{content}"/>
+        <span th:if="${#fields.hasErrors('content')}"
+              th:errors="*{content}"></span><br/>
+        Post Date :<textarea rows="1" th:field="*{posteddate}"/>
+        <span th:if="${#fields.hasErrors('posteddate')}"
+              th:errors="*{posteddate}"></span><br/>
+        Posted By :<textarea rows="2" th:field="*{postedby}"/>
+        <span th:if="${#fields.hasErrors('postedby')}"
+              th:errors="*{postedby}"></span><br/>
+        <br/>
+        <a class="btn btn-outline-success my-2 my-sm-0" type="submit" >
+            <input type="submit" value="Submit"/></a>
+    </h4>
+</form>
+</body>
+</html>

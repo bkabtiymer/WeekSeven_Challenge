@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+
+<div th:replace="base :: nav"></div>
+
+<div class="container">
+
+    <form action="#" th:action="@{/processuser}" th:object="${user}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <h2 > User </h2>
+
+        <input type="hidden" th:field="*{password}"><br/>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span><br />
+
+        First Name: <input type="text" th:field="*{firstName}"><br/>
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span><br />
+
+        Last Name: <input type="text" th:field="*{lastName}"><br/>
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span><br />
+
+        Username: <input type="text" th:field="*{username}"><br/>
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span><br />
+
+        Email: <input type="text" th:field="*{email}"><br/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span><br />
+
+        Enabled: <input type="text" th:field="*{enabled}"><br/>
+        <span th:if="${#fields.hasErrors('enabled')}" th:errors="*{enabled}"></span><br />
+
+
+
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+</body>
+</html>
